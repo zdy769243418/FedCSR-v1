@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
 from utils import torch_utils
-from model.C2DSR import C2DSR
+from model.CDSR import C2DSR
 import pdb
 import numpy as np
 import random
