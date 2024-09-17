@@ -35,7 +35,7 @@ MANIFEST
 
 # data
 *.pkl
-*.txt
+
 *.json
 
 # bash script
