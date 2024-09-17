@@ -2,6 +2,15 @@ import numpy as np
 import torch
 import torch.nn as nn
 from model.GNN import GCNLayer
+import random
+import os
+import torch
+import torch.nn as nn
+import random
+import os
+import torch
+import torch.nn as nn
+import numpy as np
 
 
 class Discriminator(torch.nn.Module):
@@ -108,6 +117,10 @@ class ATTENTION(torch.nn.Module):
         log_feats = self.last_layernorm(seqs) # (U, T, C) -> (U, -1, C)
 
         return log_feats
+    
+
+
+    
 
 class C2DSR(torch.nn.Module):
     def __init__(self, opt, adj, adj_single):
@@ -125,12 +138,38 @@ class C2DSR(torch.nn.Module):
         self.adj = adj
         self.adj_single = adj_single
 
-        self.D_X = Discriminator(self.opt["hidden_units"], self.opt["hidden_units"])
-        self.D_Y = Discriminator(self.opt["hidden_units"], self.opt["hidden_units"])
+#         self.D_X = Discriminator(self.opt["hidden_units"], self.opt["hidden_units"])
+#         self.D_Y = Discriminator(self.opt["hidden_units"], self.opt["hidden_units"])
+        
+#         self.attention1 = torch.rand([self.opt["hidden_units"], self.opt["hidden_units"]], requires_grad=True).cuda()
+#         self.attention2 = torch.rand([self.opt["hidden_units"], self.opt["hidden_units"]], requires_grad=True).cuda()
+        
+        
+        
+        self.projector = nn.Sequential(nn.Linear(self.opt["hidden_units"], self.opt["hidden_units"] * 2, bias=True), 
+                                        nn.BatchNorm1d(self.opt["hidden_units"] * 2),
+                                        nn.ReLU(inplace=True),
+                                        nn.Linear(self.opt["hidden_units"] * 2, self.opt["hidden_units"]))
+        
+#         self.predictor = nn.Sequential(nn.Linear(self.opt["hidden_units"], self.opt["hidden_units"] * 2, bias=True), 
+#                                         nn.BatchNorm1d(self.opt["hidden_units"] * 2),
+#                                         nn.ReLU(inplace=True),
+#                                         nn.Linear(self.opt["hidden_units"] * 2, self.opt["hidden_units"]))
+        
+        self.predictor_x = nn.Sequential(nn.Linear(self.opt["hidden_units"], self.opt["hidden_units"] * 4, bias=True), 
+                                        nn.BatchNorm1d(self.opt["hidden_units"] * 4),
+                                        nn.ReLU(inplace=True),
+                                        nn.Linear(self.opt["hidden_units"] * 4, self.opt["hidden_units"]))
+        
+        self.predictor_y = nn.Sequential(nn.Linear(self.opt["hidden_units"], self.opt["hidden_units"] * 4, bias=True), 
+                                        nn.BatchNorm1d(self.opt["hidden_units"] * 4),
+                                        nn.ReLU(inplace=True),
+                                        nn.Linear(self.opt["hidden_units"] * 4, self.opt["hidden_units"]))
 
         self.lin_X = nn.Linear(self.opt["hidden_units"], self.opt["source_item_num"])
         self.lin_Y = nn.Linear(self.opt["hidden_units"], self.opt["target_item_num"])
         self.lin_PAD = nn.Linear(self.opt["hidden_units"], 1)
+        
         self.encoder = ATTENTION(opt)
         self.encoder_X = ATTENTION(opt)
         self.encoder_Y = ATTENTION(opt)
