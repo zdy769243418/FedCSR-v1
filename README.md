@@ -15,7 +15,9 @@ We use public datasets from Amazon to simulate federated CSR scenarios. The data
 
 ## 4. Model Architecture
 Base Representation Encoder: Utilizes an attentional graph neural network to extract sequential representations for each domain. It encodes item-item matrices based on the temporal order of item occurrences in the sequences.
+
 Model Contrastive Learning: Creates contrastive signals between local and global user representations to reduce the information gap and mitigate model drift between platforms. It treats local and global representations of the same domain as positive samples and other domain's global sequential representations as negative samples.
+
 Sequence Contrastive Learning: Employs a cross-domain sequence augmentation technique to boost diversity and balance in inter-domain sequences. It then aligns original and augmented representations to improve the quality of sequential representation.
 
 ## 5. How to Use
