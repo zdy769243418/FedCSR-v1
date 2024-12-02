@@ -3,6 +3,8 @@
 ## 1. Introduction
 This repository contains the code for the paper "FedCSR: A Federated Framework for Multi-Platform Cross-Domain Sequential Recommendation with Dual Contrastive Learning" which has been accepted by Coling 2025. FedCSR is a novel federated cross-domain sequential recommendation framework that addresses the challenges of data heterogeneity and privacy in multi-platform scenarios. It eliminates the need for user alignment between platforms and utilizes dual contrastive learning mechanisms to enhance recommendation performance.
 
+![image](https://github.com/zdy769243418/FedCSR-v1/blob/main/model/framework.png)
+
 ## 2. Requirements
   Python 3.9.7
   
