@@ -6,9 +6,10 @@ This repository contains the code for the paper "FedCSR: A Federated Framework f
 ![image](https://github.com/zdy769243418/FedCSR-v1/blob/main/model/framework.png)
 
 ## 2. Requirements
+```
   Python 3.9.7
-  
   PyTorch 1.10.1+cu11.3.1
+```
 ## 3. Datasets
 We use public datasets from Amazon to simulate federated CSR scenarios. The datasets are divided into multiple cross-domain datasets. Each user in these datasets has interaction sequences spanning different domains.
 
@@ -18,8 +19,11 @@ Model Contrastive Learning: Creates contrastive signals between local and global
 Sequence Contrastive Learning: Employs a cross-domain sequence augmentation technique to boost diversity and balance in inter-domain sequences. It then aligns original and augmented representations to improve the quality of sequential representation.
 
 ## 5. How to Use
+```
 python train_rec.py
-
+```
 ## ６. Citation
 If you use our code or find our work helpful, please cite our paper:
+```
 FedCSR: A Federated Framework for Multi-Platform Cross-Domain Sequential Recommendation with Dual Contrastive Learning. Coling 2025.
+```
