@@ -8,7 +8,7 @@ This repository contains the code for the paper "FedCSR: A Federated Framework f
   
   PyTorch 1.11.1+cu11
 ## 3. Datasets
-We use public datasets from Amazon to simulate federated CSR scenarios. The datasets are divided into multiple cross-domain datasets, such as "Food—Kitchen" and "Movie-Book". Each user in these datasets has interaction sequences spanning different domains.
+We use public datasets from Amazon to simulate federated CSR scenarios. The datasets are divided into multiple cross-domain datasets. Each user in these datasets has interaction sequences spanning different domains.
 
 ## 4. Model Architecture
 Base Representation Encoder: Utilizes an attentional graph neural network (GAEncoder) to extract sequential representations for each domain. It encodes item-item matrices based on the temporal order of item occurrences in the sequences.
@@ -16,7 +16,7 @@ Model Contrastive Learning (MCL): Creates contrastive signals between local and 
 Sequence Contrastive Learning (SCL): Employs a cross-domain sequence augmentation technique (using replace and reorder operations) to boost diversity and balance in inter-domain sequences. It then aligns original and augmented representations to improve the quality of sequential representation.
 
 ## 5. How to Use
-python train.py
+python train_rec.py
 
 ## ６. Citation
 If you use our code or find our work helpful, please cite our paper:
